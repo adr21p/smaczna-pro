@@ -375,7 +375,7 @@ async function testApiKey() {
     const r = await fetch('https://api.anthropic.com/v1/messages', {
       method:'POST',
       headers:{ 'Content-Type':'application/json', 'x-api-key':v.trim(), 'anthropic-version':'2023-06-01', 'anthropic-dangerous-direct-browser-access':'true' },
-      body: JSON.stringify({ model:'claude-sonnet-4-20250514', max_tokens:10, messages:[{role:'user',content:'cześć'}] })
+      body: JSON.stringify({ model:'claude-sonnet-4-6', max_tokens:10, messages:[{role:'user',content:'cześć'}] })
     });
     if (r.ok) {
       res.style.background='rgba(111,207,151,0.15)'; res.style.color='var(--green)';
@@ -837,7 +837,7 @@ async function sendChat() {
 async function callAI(messages, system) {
   const key = apiKey.trim();
   if (!key) throw new Error('Brak klucza API');
-  const body = { model:'claude-sonnet-4-20250514', max_tokens:1000, messages };
+  const body = { model:'claude-sonnet-4-6', max_tokens:1000, messages };
   if (system) body.system = system;
   const res = await fetch('https://api.anthropic.com/v1/messages', {
     method:'POST',
